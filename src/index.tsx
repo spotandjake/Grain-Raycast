@@ -1,14 +1,22 @@
 import { ActionPanel, List, OpenInBrowserAction, showToast, ToastStyle } from "@raycast/api";
 import { useEffect, useState } from "react";
 import { algoliasearch, type SearchResponse } from "algoliasearch";
+import fetch from "node-fetch";
 
 interface DocumentationItem {
   title: string;
   subTitle: string;
   url: string;
-  detail: string;
+  filePath: string;
 }
 type Result<T> = { isErr: true; err: string } | { isErr: false; data: T };
+
+const buildDetail = async (sourceURL: string, title: string) => {
+  const docContent = await fetch(sourceURL);
+  const rawMarkdown = await docContent.text();
+  // TODO: Parse Content
+  // TODO: Build List Item
+};
 export default function main() {
   // Algolia Preferences
   const algoliaConfig = {
@@ -46,16 +54,18 @@ export default function main() {
         .join(" > ");
       console.log(result);
       // Try Build Detail
-      const docRawPath = unknownResult.url.replace(
-        "https://raw.githubusercontent.com/grain-lang/grain/refs/heads/main/stdlib/stdlib/"
-      );
-      const docContent = await fetch(docRawPath);
-      // const url = result.url || "";
+      const docRawPath =
+        unknownResult.url
+          .replace(
+            "https://grain-lang.org/docs/stdlib/",
+            "https://raw.githubusercontent.com/grain-lang/grain/refs/heads/main/stdlib/"
+          )
+          .replace(/#.*$/, "") + ".md";
       resultItems.push({
         title: unknownResult.hierarchy[unknownResult.type],
         subTitle: resultPath,
         url: unknownResult.url,
-        detail: "",
+        filePath: docRawPath,
       });
     }
     // Return
