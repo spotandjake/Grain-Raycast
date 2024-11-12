@@ -52,7 +52,8 @@ export default function main() {
       const resultPath = Object.values(unknownResult.hierarchy)
         .filter((n) => n != null)
         .join(" > ");
-      console.log(result);
+      const title = unknownResult.hierarchy[unknownResult.type];
+      if (title == null || unknownResult.url == null) continue;
       // Try Build Detail
       const docRawPath =
         unknownResult.url
@@ -62,7 +63,7 @@ export default function main() {
           )
           .replace(/#.*$/, "") + ".md";
       resultItems.push({
-        title: unknownResult.hierarchy[unknownResult.type],
+        title: title,
         subTitle: resultPath,
         url: unknownResult.url,
         filePath: docRawPath,
