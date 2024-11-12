@@ -1,62 +1,21 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "search-with-algolia",
-  "title": "Search with Algolia",
-  "description": "This extension allows to search through an Algolia index directly from Raycast.",
-  "icon": "command-icon.png",
-  "author": "valentindotxyz",
+  "name": "grain-lang",
+  "title": "Grain",
+  "description": "This extension allows to search through the grain lang documentation from Raycast.",
+  "icon": "Grain.png",
+  "author": "spotandjake",
+  "contributors": [
+    "spotandjake"
+  ],
   "license": "MIT",
   "commands": [
     {
       "name": "index",
-      "title": "Search",
-      "subtitle": "Algolia",
+      "title": "Grain",
+      "subtitle": "search",
       "description": "Search through an Algolia index directly from Raycast.",
-      "mode": "view",
-      "preferences": [
-        {
-          "name": "appId",
-          "type": "textfield",
-          "required": true,
-          "title": "Application ID",
-          "description": "You can find your Application ID from the Algolia Dashboard."
-        },
-        {
-          "name": "indexName",
-          "type": "textfield",
-          "required": true,
-          "title": "Index Name",
-          "description": "Specify the Algolia Index you want to search on."
-        },
-        {
-          "name": "apiKey",
-          "type": "password",
-          "required": true,
-          "title": "Search API Key",
-          "description": "You can find your Search API Key from the Algolia Dashboard."
-        },
-        {
-          "name": "mainAttribute",
-          "type": "textfield",
-          "required": true,
-          "title": "Main Attribute",
-          "description": "The main attribute from your records you want to display in search results."
-        },
-        {
-          "name": "secondaryAttribute",
-          "type": "textfield",
-          "required": false,
-          "title": "Secondary Attribute",
-          "description": "A secondary attribute from your records you want to display in search results (optional)."
-        },
-        {
-          "name": "urlAttribute",
-          "type": "textfield",
-          "required": false,
-          "title": "URL Attribute",
-          "description": "If your record contains an URL that you'd like to open (optional)."
-        }
-      ]
+      "mode": "view"
     }
   ],
   "dependencies": {
